@@ -1,5 +1,5 @@
 //
-// Shows imgur's daily top image for a search query
+// Shows the current wttr.in forecast on your desktop
 //
 
 _: (() => this.options = {
