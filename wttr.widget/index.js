@@ -3,9 +3,11 @@
 //
 
 _: (() => this.options = {
-
-	city: 'Berlin', // see wttr.io for API
-	lang: 'de'
+	
+	city: '', // Berlin
+	lang: '' // de
+	
+	// see wttr.io for API
 
 })(),
 
