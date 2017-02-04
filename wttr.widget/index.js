@@ -32,7 +32,7 @@ style: `
 	left: 20px;
 	bottom: 100px;
 	color: #efefef;
-	font: 16px monospace;
+	font: 16px "DejaVu Sans Mono", Menlo, "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
 	z-index: 999;
 
 	a>*
