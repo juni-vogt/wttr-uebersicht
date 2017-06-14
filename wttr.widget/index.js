@@ -2,42 +2,47 @@
 // Shows the current wttr.in forecast on your desktop
 //
 
-_: (() => this.options = {
-	
-	city: '', // Berlin
-	lang: '' // de
-	
-	// see wttr.io for API
+options: {
+	city: 'newyork', // one word
+	lang: 'en', // country code
+},
 
-})(),
-
-command: `
-    cd ./wttr.widget &&
-	# echo 'loading…' &&
-	{ # hide output
-
-	  OPTIONS=${escape(JSON.stringify(this.options))} \
-	  /usr/local/bin/node ./src/init-app;
-
-	} &> npm-debug.log &&
-	cat output.html
-`,
-
-refreshFrequency: 1000 * 60 * 20,
-
-render: output => output,
+refreshFrequency: 1000 * 60 * 30, // 30min
 
 style: `
-	-webkit-font-smoothing: antialiased // nicer font rendering
+	// position on screen
+	bottom: 40px;
 	left: 20px;
-	bottom: 100px;
+
+	position: fixed;
+	-webkit-font-smoothing: antialiased; // nicer font rendering
 	color: #efefef;
-	font: 16px "DejaVu Sans Mono", Menlo, "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
-	z-index: 999;
 
-	a>*
-		max-width: 200px
-		max-height: 200px
+	pre
+		font: 16px "DejaVu Sans Mono", Menlo, "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
 
+`,
 
+command: function(cb) {
+	// this part is unnecessarily complicated because I wanted to have an
+	// options property
+
+	const cmd = `
+		cd wttr2.widget &&
+		curl -s wttr.in/${this.options.city}?lang=${this.options.lang} |
+		./terminal-to-html
+	`;
+	// see https://github.com/chubin/wttr.in for API
+	// uses https://github.com/buildkite/terminal
+
+	this.run(cmd, (err, data) => {
+		cb(this.render({ err, data }))
+	})
+},
+
+render: out => `
+	<link rel="stylesheet" href="wttr2.widget/terminal-colors.css" />
+	<pre>
+	${console.log('out', out) && out.err || out.data.split('\n').slice(1, 7).join('\n')}
+	</pre>
 `
