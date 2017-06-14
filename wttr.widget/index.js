@@ -43,6 +43,6 @@ command: function(cb) {
 render: out => `
 	<link rel="stylesheet" href="wttr2.widget/terminal-colors.css" />
 	<pre>
-	${console.log('out', out) && out.err || out.data.split('\n').slice(1, 7).join('\n')}
+	${out.err || out.data.split('\n').slice(1, 7).join('\n')}
 	</pre>
 `

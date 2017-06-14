@@ -1,6 +1,6 @@
 {
   "name": "wttr-uebersicht",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "wttr.in Übersicht widget",
   "main": "wttr.widget/index.js",
   "scripts": {
