@@ -1,7 +1,14 @@
 //
 // Shows the current wttr.in forecast on your desktop
 //
+//
+//Change language and city with the two parameter below.
+//check http://wttr.in/:translation for a list of available languanges.
+//
+//
 
+export const lang = "fr";
+export const city = "Paris";
 
 export const refreshFrequency = 1000 * 60 * 30 // 30min
 
@@ -18,21 +25,10 @@ export const className = `
 		font: 7px "DejaVu Sans Mono", Menlo, "Lucida Sans Typewriter", "Lucida Console", monaco, "Bitstream Vera Sans Mono", monospace;
 
 `;
-/*****************************************************************************************************************/
-//Change language and city in a "not-so-elegant" way:
-
-//curl -s <lang>.wttr.in/<city>\?0tq
-
-//Ex. curl -s fr.wttr.in/Paris\?0tq
-// <lang> = fr for french, and <city> = Paris.
-//set language <lang> and City <city> in the url below.
-
-//check http://wttr.in/:translation for a list of available languanges.
-/*****************************************************************************************************************/
 
 export const command = `
 	cd wttr.widget &&
-	curl -s fr.wttr.in/Paris\?0tq |
+	curl -s ${lang}.wttr.in/${city}\?0tq |
 	./terminal-to-html
 `;
 
