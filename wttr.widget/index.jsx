@@ -2,8 +2,8 @@
 // Shows the current wttr.in forecast on your desktop
 //
 //
-//Change language and city with the two parameter below.
-//check http://wttr.in/:translation for a list of available languanges.
+// Change language and city with the two parameter below.
+// check http://wttr.in/:translation for a list of available languanges.
 //
 //
 
@@ -29,7 +29,7 @@ export const className = `
 export const command = `
 	cd wttr.widget &&
 	curl -s ${lang}.wttr.in/${city}\?0tq |
-	./terminal-to-html
+	./terminal-to-html.sh
 `;
 
 
